@@ -1,0 +1,3 @@
+class CollegeNotificationsController < ApplicationController
+  end
+  

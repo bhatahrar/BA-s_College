@@ -1,0 +1,54 @@
+<div style="text-align:center; margin-bottom:40px; font-family:Arial, sans-serif;">
+
+  <h1 style="font-size:3rem; color:#2c3e50; margin-bottom:10px; text-shadow:1px 1px 2px rgba(0,0,0,0.1);">
+    Welcome to BA's College
+  </h1>
+
+  <h2 style="font-size:1.6rem; color:#34495e; margin-bottom:5px; font-weight:normal;">
+    Empowering Students for a Brighter Future
+  </h2>
+
+  <h3 style="font-size:1.2rem; color:#7f8c8d; margin-bottom:15px; font-weight:normal;">
+    Discover knowledge, grow your skills, and achieve excellence
+  </h3>
+
+
+</div>
+
+<nav style="text-align:center; margin-bottom:30px;">
+  <% button_style = "text-decoration:none; padding:10px 15px; background:#3498db; color:white; border-radius:6px; margin:5px; font-weight:bold; display:inline-block; transition:0.3s;" %>
+  <%= link_to "Apply as Student", new_application_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
+  <%= link_to "Search By Admission ID", admissions_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
+  <%= link_to "Course Name For Subjects", courses_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
+  <%= link_to "Check Result Here", results_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
+  <% if current_user&.role == "student" %>
+    <%= link_to "#{current_user.name.capitalize}'s Application", applications_path, 
+        style:"padding:10px 12px; background:#3498db; color:white; border-radius:6px; text-decoration:none; font-weight:bold; transition:0.3s;",
+        onmouseover:"this.style.background='#2980b9';", 
+        onmouseout:"this.style.background='#3498db';" %>
+  <%end%>
+</nav>
+
+<h2 style="text-align:center; color:#34495e; margin-bottom:20px; font-family:Arial, sans-serif;">College Notifications</h2>
+
+<% if @notifications.any? %>
+  <% @notifications.each do |note| %>
+    <div style="
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 0 auto 15px auto;
+      max-width: 800px;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      font-family: Arial, sans-serif;
+    " 
+    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.2)'; this.style.background='#f9f9f9';" 
+    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)'; this.style.background='#ffffff';">
+      <p style="margin:0 0 10px 0; font-size:1.1rem; color:#2c3e50; font-weight:bold;"><%= note.message %></p>
+      <small style="color:#7f8c8d; font-size:0.85rem;">Posted on: <%= note.created_at.to_date %></small>
+    </div>
+  <% end %>
+<% else %>
+  <p style="text-align:center; font-style:italic; color:#95a5a6;">No notifications yet.</p>
+<% end %>

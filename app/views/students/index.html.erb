@@ -1,0 +1,32 @@
+<h1 style="text-align:center; color:#2c3e50; font-family:Arial, sans-serif; margin-bottom:25px;">
+  All Students
+</h1>
+
+<table style="width:90%; max-width:800px; margin:0 auto; border-collapse:collapse; font-family:Arial, sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  <thead style="background:#3498db; color:white;">
+    <tr>
+      <th style="padding:10px; text-align:left;">ID</th>
+      <th style="padding:10px; text-align:left;">Name</th>
+      <th style="padding:10px; text-align:left;">Age</th>
+      <th style="padding:10px; text-align:left;">Phone</th>
+      <th style="padding:10px; text-align:left;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr style="background:#ffffff; transition: background 0.3s;" onmouseover="this.style.background='#f0f8ff';" onmouseout="this.style.background='#ffffff';">
+        <td style="padding:10px;"><%= student.id %></td>
+        <td style="padding:10px;"><%= student.name %></td>
+        <td style="padding:10px;"><%= student.age %></td>
+        <td style="padding:10px;"><%= student.phone %></td>
+        <td style="padding:10px;">
+          <%= link_to "View", student_path(student), style:"text-decoration:none; color:white; background:#2ecc71; padding:6px 12px; border-radius:6px; font-weight:bold; transition: background 0.3s;", onmouseover:"this.style.background='#27ae60';", onmouseout:"this.style.background='#2ecc71';" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div style="text-align:center; margin-top:20px; font-family:Arial, sans-serif;">
+  <%= link_to "Back To Main Page", applications_path, style:"text-decoration:none; color:#3498db; font-weight:bold; margin-left:15px;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>

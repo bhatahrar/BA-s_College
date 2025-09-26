@@ -1,0 +1,30 @@
+<h2 style="text-align:center; color:#2c3e50; font-family:Arial, sans-serif; margin-bottom:25px;">
+  Signup
+</h2>
+
+<%= form_with model: @user, local: true, style:"max-width:400px; margin:0 auto; background:#ffffff; padding:30px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); font-family:Arial, sans-serif;" do |f| %>
+
+  <p style="margin-bottom:20px;">
+    <%= f.label :name, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.text_field :name, placeholder:"Enter your Name", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:20px;">
+    <%= f.label :email, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.email_field :email, placeholder:"Enter your Email", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:20px;">
+    <%= f.label :password, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.password_field :password, placeholder:"Enter your Password", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p>
+    <%= f.submit "Sign Up", style:"width:100%; padding:12px; background:#2ecc71; color:white; border:none; border-radius:6px; font-weight:bold; font-size:1rem; cursor:pointer; transition: background 0.3s;", onmouseover:"this.style.background='#27ae60';", onmouseout:"this.style.background='#2ecc71';" %>
+  </p>
+
+<% end %>
+
+<div style="text-align:center; margin-top:20px; font-family:Arial, sans-serif;">
+  <%= link_to "Back to Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>

@@ -1,0 +1,16 @@
+<h2 style="text-align:center; color:#2c3e50; font-family:Arial, sans-serif; margin-bottom:25px;">
+  Search Admission by ID
+</h2>
+
+<%= form_with url: admissions_show_by_id_path, method: :post, local: true, style: "max-width:400px; margin:0 auto; background:#ffffff; padding:25px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" do %>
+  <p style="margin-bottom:20px;">
+    <%= label_tag :admission_id, "Enter Admission ID", style:"display:block; margin-bottom:8px; font-weight:bold; color:#34495e;" %>
+    <%= number_field_tag :admission_id, nil, style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition: border 0.3s;" , onfocus: "this.style.borderColor='#3498db';", onblur: "this.style.borderColor='#ccc';" %>
+  </p>
+
+  <%= submit_tag "Search", style:"width:100%; padding:10px; background:#3498db; color:white; border:none; border-radius:6px; font-weight:bold; font-size:1rem; cursor:pointer; transition: background 0.3s;", onmouseover:"this.style.background='#2980b9';", onmouseout:"this.style.background='#3498db';" %>
+<% end %>
+
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>

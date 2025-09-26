@@ -1,0 +1,34 @@
+<% if @student && @results.present? %>
+  <div style="max-width:600px; margin:0 auto; background:#ffffff; padding:25px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+    
+    <h2 style="text-align:center; color:#2c3e50; margin-bottom:15px;">Result</h2>
+    
+    <h3 style="color:#34495e; margin-bottom:10px;">Student Name: <span style="color:#2c3e50;"><%= @student.name %></span></h3>
+    
+    <p style="margin:8px 0;"><strong style="color:#34495e;">Student ID:</strong> <span style="color:#2c3e50;"><%= @student.id %></span></p>
+    <p style="margin:8px 0;"><strong style="color:#34495e;">Age:</strong> <span style="color:#2c3e50;"><%= @student.age %></span></p>
+    <p style="margin:8px 0;"><strong style="color:#34495e;">Phone-no:</strong> <span style="color:#2c3e50;"><%= @student.phone %></span></p>
+    
+    <p style="margin:15px 0 8px 0; font-weight:bold; color:#34495e;">Marks:</p>
+    <ul style="list-style-type:disc; padding-left:20px; color:#2c3e50;">
+      <% @results.each do |result| %>
+        <li style="margin-bottom:6px; transition: color 0.3s;" onmouseover="this.style.color='#3498db';" onmouseout="this.style.color='#2c3e50';">
+          Semester <%= result.semester %> : <strong><%= result.marks %></strong> marks
+        </li>
+      <% end %>
+    </ul>
+    
+  </div>
+<% else %>
+  <p style="text-align:center; font-style:italic; color:#95a5a6;">No Result found with this ID.</p>
+<% end %>
+
+<% if current_user&.role=="student" %>
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", applications_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>
+<% else %>
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>
+<% end %>

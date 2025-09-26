@@ -1,0 +1,26 @@
+<h2 style="text-align:center; color:#2c3e50; font-family:Arial, sans-serif; margin-bottom:20px;">
+  Student Details
+</h2>
+
+<div style="max-width:600px; margin:0 auto; background:#ffffff; padding:20px 25px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+
+  <p style="margin-bottom:10px;"><strong style="color:#34495e;">Name:</strong> <span style="color:#2c3e50;"><%= @student.name %></span></p>
+  <p style="margin-bottom:10px;"><strong style="color:#34495e;">Age:</strong> <span style="color:#2c3e50;"><%= @student.age %></span></p>
+  <p style="margin-bottom:10px;"><strong style="color:#34495e;">Phone:</strong> <span style="color:#2c3e50;"><%= @student.phone %></span></p>
+
+  <h3 style="color:#2c3e50; margin-top:20px; margin-bottom:10px;">Admission Details</h3>
+  <% if @student.admission %>
+    <p style="margin-bottom:10px;"><strong style="color:#34495e;">Admission ID:</strong> <span style="color:#2c3e50;"><%= @student.admission.id %></span></p>
+    <p style="margin-bottom:10px;"><strong style="color:#34495e;">Course:</strong> <span style="color:#2c3e50;"><%= @student.admission.course.name %></span></p>
+    <p style="margin-bottom:10px;"><strong style="color:#34495e;">Fee:</strong> <span style="color:#2c3e50;"><%= @student.admission.fee %></span></p>
+    <p style="margin-bottom:10px;"><strong style="color:#34495e;">Year of Joining:</strong> <span style="color:#2c3e50;"><%= @student.admission.year_of_joining %></span></p>
+  <% else %>
+    <p style="color:#95a5a6; font-style:italic;">No admission record found.</p>
+  <% end %>
+
+  <div style="text-align:center; margin-top:25px;">
+    <%= link_to "Back To Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; margin-right:15px;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %> |
+    <%= link_to "View All Students", students_path, style:"text-decoration:none; color:#3498db; font-weight:bold; margin-left:15px;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+  </div>
+
+</div>

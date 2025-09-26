@@ -1,0 +1,29 @@
+<h2 style="text-align:center; color:#2c3e50; font-family:Arial, sans-serif; margin-bottom:25px;">
+  Admission details of <%= @admission.student.name %>
+</h2>
+
+<% if @admission.student %>
+  <div style="max-width:600px; margin:0 auto; background:#ffffff; padding:25px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+    
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Admission ID:</strong> <span style="color:#2c3e50;"><%= @admission.id %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Student ID:</strong> <span style="color:#2c3e50;"><%= @admission.student.id %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Name:</strong> <span style="color:#2c3e50;"><%= @admission.student.name %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Age:</strong> <span style="color:#2c3e50;"><%= @admission.student.age %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Phone-No:</strong> <span style="color:#2c3e50;"><%= @admission.student.phone %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Course:</strong> <span style="color:#2c3e50;"><%= @admission.course.name %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Fee:</strong> <span style="color:#2c3e50;"><%= @admission.fee %></span></p>
+    <p style="margin:10px 0;"><strong style="color:#34495e;">Year of Joining:</strong> <span style="color:#2c3e50;"><%= @admission.year_of_joining %></span></p>
+    
+  </div>
+<% else %>
+  <p style="text-align:center; color:#95a5a6; font-style:italic;">No admission record found.</p>
+<% end %>
+<% if current_user&.role=="student" %>
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", applications_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>
+<% else %>
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>
+<% end %>

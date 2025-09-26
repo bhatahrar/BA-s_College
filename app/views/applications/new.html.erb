@@ -1,0 +1,47 @@
+<% if @application.errors.any? %>
+  <div style="max-width:500px; margin:0 auto 20px auto; background:#e74c3c; color:white; padding:15px 20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+    <h2 style="margin-top:0; font-size:1.2rem;">The following errors prevented the application from being saved:</h2>
+    <ul style="margin:0; padding-left:20px;">
+      <% @application.errors.full_messages.each do |error| %>
+        <li style="margin-bottom:6px;"><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @application, local: true, style:"max-width:500px; margin:0 auto; background:#ffffff; padding:25px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); font-family:Arial, sans-serif;" do |f| %>
+
+  <p style="margin-bottom:15px;">
+    <%= f.label :applicant_name, "Name", style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.text_field :applicant_name, placeholder: "Name", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:15px;">
+    <%= f.label :email, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.email_field :email, placeholder: "Email", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:15px;">
+    <%= f.label :phone, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.telephone_field :phone, placeholder: "Phone", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:15px;">
+    <%= f.label :age, style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.number_field :age, placeholder: "Age", style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p style="margin-bottom:20px;">
+    <%= f.label :course_id, "Course", style:"display:block; margin-bottom:6px; font-weight:bold; color:#34495e;" %>
+    <%= f.collection_select :course_id, Course.all, :id, :name, {}, style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem; transition:border 0.3s;", onfocus:"this.style.borderColor='#3498db';", onblur:"this.style.borderColor='#ccc';" %>
+  </p>
+
+  <p>
+    <%= f.submit "Submit Application", style:"width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:6px; font-weight:bold; font-size:1rem; cursor:pointer; transition: background 0.3s;", onmouseover:"this.style.background='#2980b9';", onmouseout:"this.style.background='#3498db';" %>
+  </p>
+
+<% end %>
+
+<div style="text-align:center; margin-top:20px;">
+  <%= link_to "Back to Main Page", root_path, style:"text-decoration:none; color:#3498db; font-weight:bold; font-size:1rem; transition: color 0.3s;", onmouseover:"this.style.color='#2980b9';", onmouseout:"this.style.color='#3498db';" %>
+</div>

@@ -1,0 +1,2 @@
+class CollegeNotification < ApplicationRecord
+end
