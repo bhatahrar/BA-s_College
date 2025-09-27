@@ -15,6 +15,7 @@
         end
       
         def create
+          byebug
           @application = current_user.applications.new(application_params)
           if @application.save
             redirect_to applications_path, notice: "Application submitted!"

@@ -41,7 +41,6 @@ resources :applications
 # end
 
 
-
 patch "/applications/:id/approve", to: "applications#approve", as: "approve_application"
 patch "/applications/:id/reject", to: "applications#reject", as: "reject_application"
 end
