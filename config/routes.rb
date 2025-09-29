@@ -30,7 +30,7 @@ get "logout", to: "sessions#destroy"
 
 
 resources :users,only:[:new,:create]
-resources :college_notifications, only: [:index, :new, :create]
+resources :college_notifications
 
 resources :applications 
 # do
@@ -39,8 +39,6 @@ resources :applications
 #     patch :reject
 #   end
 # end
-
-
 patch "/applications/:id/approve", to: "applications#approve", as: "approve_application"
 patch "/applications/:id/reject", to: "applications#reject", as: "reject_application"
 end

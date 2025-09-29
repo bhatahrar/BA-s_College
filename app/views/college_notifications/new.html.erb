@@ -1,0 +1,18 @@
+<div style="max-width:600px; margin:30px auto; background:#ffffff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+
+  <h2 style="text-align:center; color:#2c3e50; margin-bottom:20px;">Add New Notification</h2>
+
+  <%= form_with(model: @notification, local: true) do |f| %>
+    
+    <div style="margin-bottom:15px;">
+      <%= f.label :message, "Notification Message", style:"display:block; margin-bottom:8px; font-weight:bold; color:#34495e;" %>
+      <%= f.text_area :message, rows: 3, style:"width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem;" %>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <%= f.submit "Save Notification", style:"padding:10px 15px; background:#27ae60; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer;" %>
+      <%= link_to "Cancel", root_path, style:"padding:10px 15px; background:#7f8c8d; color:white; border-radius:6px; text-decoration:none; font-weight:bold; margin-left:10px;" %>
+    </div>
+
+  <% end %>
+</div>

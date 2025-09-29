@@ -1,5 +1,4 @@
 <div style="text-align:center; margin-bottom:40px; font-family:Arial, sans-serif;">
-
   <h1 style="font-size:3rem; color:#2c3e50; margin-bottom:10px; text-shadow:1px 1px 2px rgba(0,0,0,0.1);">
     Welcome to BA's College
   </h1>
@@ -11,44 +10,72 @@
   <h3 style="font-size:1.2rem; color:#7f8c8d; margin-bottom:15px; font-weight:normal;">
     Discover knowledge, grow your skills, and achieve excellence
   </h3>
-
-
 </div>
 
-<nav style="text-align:center; margin-bottom:30px;">
-  <% button_style = "text-decoration:none; padding:10px 15px; background:#3498db; color:white; border-radius:6px; margin:5px; font-weight:bold; display:inline-block; transition:0.3s;" %>
+<nav style="text-align:center; margin-bottom:40px;">
+  <% button_style = "text-decoration:none; padding:12px 18px; background:#3498db; color:white; border-radius:6px; margin:5px; font-weight:bold; display:inline-block; transition:0.3s;" %>
+
   <%= link_to "Apply as Student", new_application_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
   <%= link_to "Search By Admission ID", admissions_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
   <%= link_to "Course Name For Subjects", courses_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
   <%= link_to "Check Result Here", results_search_path, style: button_style, onmouseover: "this.style.background='#2980b9';", onmouseout: "this.style.background='#3498db';" %>
+
   <% if current_user&.role == "student" %>
     <%= link_to "#{current_user.name.capitalize}'s Application", applications_path, 
-        style:"padding:10px 12px; background:#3498db; color:white; border-radius:6px; text-decoration:none; font-weight:bold; transition:0.3s;",
+        style:"padding:12px 18px; background:#3498db; color:white; border-radius:6px; text-decoration:none; font-weight:bold; display:inline-block; margin:5px; transition:0.3s;",
         onmouseover:"this.style.background='#2980b9';", 
         onmouseout:"this.style.background='#3498db';" %>
-  <%end%>
+        <% elsif current_user&.role=="admin"%>
+         <%= link_to "All Applications", applications_path, 
+        style:"padding:12px 18px; background:#3498db; color:white; border-radius:6px; text-decoration:none; font-weight:bold; display:inline-block; margin:5px; transition:0.3s;",
+        onmouseover:"this.style.background='#2980b9';", 
+        onmouseout:"this.style.background='#3498db';" %>
+  <% end %>
 </nav>
 
-<h2 style="text-align:center; color:#34495e; margin-bottom:20px; font-family:Arial, sans-serif;">College Notifications</h2>
+<% if current_user&.role == "admin" %>
+  <div style="text-align:center; margin-bottom:30px;">
+    <%= link_to "New Notification", new_college_notification_path, 
+        style:"padding:12px 18px; background:#27ae60; color:white; border-radius:6px; font-weight:bold; text-decoration:none; transition:0.3s;",
+        onmouseover:"this.style.background='#1e8449';",
+        onmouseout:"this.style.background='#27ae60';" %>
+  </div>
+<% end %>
+
+<h2 style="text-align:center; color:#34495e; margin-bottom:25px; font-family:Arial, sans-serif;">College Notifications</h2>
 
 <% if @notifications.any? %>
   <% @notifications.each do |note| %>
     <div style="
       background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: 0 auto 15px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px 25px;
+      margin: 0 auto 20px auto;
       max-width: 800px;
       transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
       font-family: Arial, sans-serif;
-    " 
-    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.2)'; this.style.background='#f9f9f9';" 
-    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)'; this.style.background='#ffffff';">
+    "
+    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.background='#f9f9f9';" 
+    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.background='#ffffff';">
+
       <p style="margin:0 0 10px 0; font-size:1.1rem; color:#2c3e50; font-weight:bold;"><%= note.message %></p>
       <small style="color:#7f8c8d; font-size:0.85rem;">Posted on: <%= note.created_at.to_date %></small>
+
+      <% if current_user&.role == "admin" %>
+        <div style="margin-top:12px; text-align:right;">
+          <%= link_to "Edit", edit_college_notification_path(note), 
+              style:"padding:6px 12px;border:0px; background:#f39c12; color:white; border-radius:5px; text-decoration:none; margin-right:8px; transition:0.3s;",
+              onmouseover:"this.style.background='#d68910';",
+              onmouseout:"this.style.background='#f39c12';" %>
+          <%= button_to "Delete", college_notification_path(note), method: :delete,
+              style:"padding:6px 12px;border:0px; background:#e74c3c; color:white; border-radius:5px; text-decoration:none; transition:0.3s;",
+              onmouseover:"this.style.background='#c0392b';",
+              onmouseout:"this.style.background='#e74c3c';" %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% else %>
-  <p style="text-align:center; font-style:italic; color:#95a5a6;">No notifications yet.</p>
+  <p style="text-align:center; font-style:italic; color:#95a5a6; margin-top:20px;">No notifications yet.</p>
 <% end %>

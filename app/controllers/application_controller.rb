@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_path, alert: "You must be logged in to access this page"
     end
   end
+  def require_admin
+    unless current_user&.role=="admin"
+      redirect_to root_path, alert:"Only admin can access this page"
+  end
+end 
 end
